@@ -38,10 +38,5 @@ export function getAllDataSources(targetFormId: string, forms: Form[]): string[]
 		}
 	}
 
-	return dataSources;
+	return dataSources.filter(id => id !== targetFormId);
 }
-
-// Testing
-import { mockForms } from '../data/mockData'
-
-console.log(getAllDataSources("cat_advancement", mockForms))
