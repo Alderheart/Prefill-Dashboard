@@ -48,7 +48,7 @@ export const mockForms: Form[] = [
 		],
 		fields: [
 			{
-				id: "cat_level",
+				id: "cat_advancement_level",
 				name: "Cat Level",
 				type: "number",
 				prefillMapping: {
@@ -58,7 +58,7 @@ export const mockForms: Form[] = [
 				}
 			},
 			{
-				id: "cat_experience",
+				id: "cat_advancement_experience",
 				name: "Cat Experience",
 				type: "number",
 				prefillMapping: {
