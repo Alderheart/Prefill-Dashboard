@@ -1,12 +1,15 @@
-import { mockForms } from "../data/mockData";
+import type { Form } from "../types";
 
-export const FormList = () => {
+interface FormListProps {
+	allForms: Form[]
+	onFormSelect: (formId: string) => void
+}
 
-	const forms = mockForms.map(form => 
-		<li key={form.id}>
-			<p>{form.name} (ID: {form.id})</p>
-			<p>Fields: {form.fields.length}</p>
-			<p>Depends on: {form.dependsOn.length > 0 ? form.dependsOn.join(', ') : '(none)'}</p>
+export const FormList = ({ allForms, onFormSelect }: FormListProps) => {
+
+	const forms = allForms.map(form => 
+		<li key={form.id} onClick={() => onFormSelect(form.id)}>
+			{form.name}
 		</li>
 	);
 	
