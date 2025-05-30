@@ -8,7 +8,7 @@ interface FormListProps {
 export const FormList = ({ allForms, onFormSelect }: FormListProps) => {
 
 	const forms = allForms.map(form => 
-		<li key={form.id} onClick={() => onFormSelect(form.id)}>
+		<li key={form.id} onClick={() => onFormSelect(form.id)} style={{ cursor: 'pointer', padding: '5px', border: '1px solid #ccc', margin: '5px 0' }}>
 			{form.name}
 		</li>
 	);

@@ -36,7 +36,7 @@ function App() {
 					}
 					else {
 						field.prefillMapping = newMapping;
-						console.log("DELETED");
+						console.log("ADDED MAPPING");
 					}
 				}
 			}
@@ -46,7 +46,14 @@ function App() {
 	return (
 		<>
 			<FormList allForms={allForms} onFormSelect={handleFormSelect} />
-			{selectedForm && <FormDetails fields={selectedForm.fields} allForms={allForms} onFieldMappingChange={handleFieldMappingChange}/>}
+			{selectedForm && (
+				<FormDetails 
+					fields={selectedForm.fields} 
+					allForms={allForms} 
+					currentFormId={selectedForm.id}
+					onFieldMappingChange={handleFieldMappingChange}
+				/>
+			)}
 		</>
 	)
 }

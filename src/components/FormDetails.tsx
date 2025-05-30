@@ -1,43 +1,73 @@
 import { useState } from "react";
 import type { Field, Form, PrefillMapping } from "../types";
+import { PrefillModal } from "./PrefillModal";
 
 interface FormDetailsProps {
 	fields: Field[],
 	allForms: Form[],
+	currentFormId: string,
 	onFieldMappingChange: (fieldId: string, newMapping: PrefillMapping | null) => void
 }
 
-export const FormDetails = ({ fields, allForms, onFieldMappingChange }: FormDetailsProps) => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [editedFieldId, setEditedFieldId] = useState<string | null>(null);
+export const FormDetails = ({ fields, allForms, currentFormId, onFieldMappingChange }: FormDetailsProps) => {
+	const [modalOpen, setModalOpen] = useState(false);
+	const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
+
+	const handleFieldClick = (fieldId: string) => {
+		const field = fields.find(f => f.id === fieldId);
+		// Only open modal if field doesn't have a mapping yet
+		if (!field?.prefillMapping) {
+			setSelectedFieldId(fieldId);
+			setModalOpen(true);
+		}
+	};
+
+	const handleModalSelect = (mapping: PrefillMapping) => {
+		if (selectedFieldId) {
+			onFieldMappingChange(selectedFieldId, mapping);
+		}
+		setModalOpen(false);
+		setSelectedFieldId(null);
+	};
+
+	const handleModalClose = () => {
+		setModalOpen(false);
+		setSelectedFieldId(null);
+	};
 
 	const onClickX = (fieldId: string) => {
-		console.log("Clearing field:", fieldId);
 		onFieldMappingChange(fieldId, null);
 	};
 
-	const onClickField = (fieldId: string) => {
-		console.log("Opening modal for field:", fieldId);
-		setEditedFieldId(fieldId);
-		setIsModalOpen(true);
-	};
+	const selectedField = selectedFieldId ? fields.find(f => f.id === selectedFieldId) : null;
 
 	return (
 		<div>
 			<h3>Field Configuration</h3>
-			{fields.map(field => 
-				<div key={field.id} onClick={(e) => onClickField(field.id)}>
-					{field.prefillMapping ? field.name + ': ' + (field.prefillMapping.sourceFormId || 'Global') + '.' + field.prefillMapping.sourceFieldId : field.name}
-					{field.prefillMapping &&
-						<button onClick={(e) => {
-							e.stopPropagation();
-							onClickX(field.id)
-						}}>
-							X
-						</button>
-					}
+			{fields.map(field => (
+				<div key={field.id} style={{ margin: '10px 0', padding: '5px', border: '1px solid #ccc' }}>
+					<div onClick={() => handleFieldClick(field.id)} style={{ cursor: 'pointer' }}>
+						{field.prefillMapping 
+							? `${field.name}: ${field.prefillMapping.sourceFormId}.${field.prefillMapping.sourceFieldId}`
+							: `${field.name} (click to set mapping)`
+						}
+						{field.prefillMapping && (
+							<button onClick={(e) => { e.stopPropagation(); onClickX(field.id); }}>
+								X
+							</button>
+						)}
+					</div>
 				</div>
-			)}
+			))}
+			
+			<PrefillModal
+				isOpen={modalOpen}
+				fieldName={selectedField?.name || ''}
+				currentFormId={currentFormId}
+				allForms={allForms}
+				onClose={handleModalClose}
+				onSelect={handleModalSelect}
+			/>
 		</div>
 	);
 };
