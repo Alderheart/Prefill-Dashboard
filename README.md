@@ -15,15 +15,21 @@ A React-based dashboard application for managing form field prefill mappings. Th
 
 ```
 src/
-├── api/          # API utilities
 ├── components/   # React components
 │   ├── FormList.tsx       # List of available forms
 │   ├── FormDetails.tsx    # Details view for selected form
 │   └── PrefillModal.tsx   # Modal for configuring prefill mappings
 ├── data/         # Mock data
-├── types/        # TypeScript type definitions
-└── utils/        # Utility functions (e.g., graph traversal)
+├── types/        # Form, Field, and PrefillMapping definitions
+└── utils/        # DFS traversal and child mapping
 ```
+
+## Technologies Used
+
+- **React** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Immer** - Immutable state updates
 
 ## How to Run
 
@@ -49,11 +55,3 @@ npm install
 ```bash
 npm run dev
 ```
-
-## Technologies Used
-
-- **React** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **Immer** - Immutable state updates
-- **CSS Modules** - Scoped styling
