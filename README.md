@@ -33,11 +33,6 @@ src/
 
 ## How to Run
 
-### Prerequisites
-
-- Node.js (v16 or higher recommended)
-- npm or yarn
-
 ### Installation
 
 1. Clone the repository:
