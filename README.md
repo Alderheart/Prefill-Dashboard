@@ -1,6 +1,6 @@
 # Prefill Dashboard
 
-A React-based dashboard application for managing form field prefill mappings. This application allows users to configure how form fields can be prefilled from other forms or global data sources, while respecting form dependencies.
+A React-based dashboard application for managing form field prefill mappings. This application allows users to configure how form fields can be prefilled from other forms or global data sources, while respecting form dependencies. Built for a technical screen at [Avantos.ai](https://avantos.ai/).
 
 ## Features
 
@@ -51,7 +51,7 @@ cd Prefill-Dashboard
 npm install
 ```
 
-3. This project was meant for learning, as such is intended to be run in development mode.
+3. This project was meant for learning & as a screen, as such is intended to be run in development mode.
 ```bash
 npm run dev
 ```
