@@ -18,12 +18,15 @@ function App() {
 		}
 	}, [allForms, selectedForm?.id])
 
+	// Finds form from ID
 	const findForm = (id: string) => allForms.find(form => form.id === id) ?? null;
 
+	// Callback for selecting source
 	const handleFormSelect = (formId: string) => {
 		setSelectedForm(findForm(formId));
 	};
 	
+	// Callback for field edits
 	const handleFieldMappingChange = (fieldId: string, newMapping: PrefillMapping | null) => {
 		setAllForms(produce(draft => {
 			const form = draft.find(form => form.fields.some(field => field.id === fieldId));

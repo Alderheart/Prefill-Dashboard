@@ -6,7 +6,7 @@ export interface Form {
 }
 
 export interface Field {
-	id: string,						// Identifying Field ID
+	id: string,						
 	name: string,
 	type: string,					// Data type of the field
 	prefillMapping?: PrefillMapping	// Prefill mapping of the field

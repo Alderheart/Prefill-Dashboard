@@ -13,15 +13,19 @@ export const FormDetails = ({ fields, allForms, currentFormId, onFieldMappingCha
 	const [modalOpen, setModalOpen] = useState(false);
 	const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null);
 
+	const selectedField = selectedFieldId ? fields.find(f => f.id === selectedFieldId) : null;
+
+	// Open modal
 	const handleFieldClick = (fieldId: string) => {
 		const field = fields.find(f => f.id === fieldId);
-		// Only open modal if field doesn't have a mapping yet
+
 		if (!field?.prefillMapping) {
 			setSelectedFieldId(fieldId);
 			setModalOpen(true);
 		}
 	};
 
+	// Select source
 	const handleModalSelect = (mapping: PrefillMapping) => {
 		if (selectedFieldId) {
 			onFieldMappingChange(selectedFieldId, mapping);
@@ -30,16 +34,16 @@ export const FormDetails = ({ fields, allForms, currentFormId, onFieldMappingCha
 		setSelectedFieldId(null);
 	};
 
+	// Modal closing
 	const handleModalClose = () => {
 		setModalOpen(false);
 		setSelectedFieldId(null);
 	};
 
+	// Close Button
 	const onClickX = (fieldId: string) => {
 		onFieldMappingChange(fieldId, null);
 	};
-
-	const selectedField = selectedFieldId ? fields.find(f => f.id === selectedFieldId) : null;
 
 	return (
 		<div>

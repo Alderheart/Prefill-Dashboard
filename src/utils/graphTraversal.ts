@@ -1,7 +1,7 @@
 import type { Form } from "../types";
 
+// Iterates backwards through parents
 export function buildChildrenMap(forms: Form[]): Map<string, string[]> {
-	
 	let childrenMap = new Map<string, string[]>;
 
 	forms.forEach((form) => {
@@ -15,6 +15,7 @@ export function buildChildrenMap(forms: Form[]): Map<string, string[]> {
 	return childrenMap;
 }
 
+// Uses DFS to find all valid sources
 export function getAllDataSources(targetFormId: string, forms: Form[]): string[] {
 	const visited: string[] = [];
 	const dataSources: string[] = [];
