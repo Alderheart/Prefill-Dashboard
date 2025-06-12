@@ -6,7 +6,7 @@ A React-based dashboard application for managing form field prefill mappings. Th
 
 - **Form Management**: View and manage multiple forms with their fields
 - **Prefill Mapping**: Configure how fields can be prefilled from:
-  - Other form fields (respecting dependency hierarchy)
+  - Ancestor data sources
   - Global data sources
 - **Dependency Tracking**: Forms can depend on other forms, creating a hierarchical structure
 - **Interactive UI**: Click on fields to configure their prefill mappings through a modal interface
